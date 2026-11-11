@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Order Intelligence | Property Operations Improvement</title>
+<style>
+:root{--navy:#14283f;--navy2:#203d5b;--blue:#426b91;--teal:#168579;--amber:#c58a2b;--red:#b94b4b;--bg:#f3f6f9;--ink:#263648;--muted:#6d7c8b;--line:#e1e7ed;--white:#fff;--shadow:0 8px 24px rgba(24,48,72,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{background:var(--navy);color:white;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-size:13px;letter-spacing:.14em;font-weight:800}.brand span{display:block;color:#a9bfd2;font-weight:500;letter-spacing:.04em;margin-top:3px}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:white;color:var(--navy);border-radius:8px;padding:9px 13px;font-weight:650}.btn.primary{background:var(--navy2);color:white;border-color:var(--navy2)}.btn.teal{background:var(--teal);color:white;border-color:var(--teal)}.btn.danger{color:var(--red)}.btn.small{padding:6px 9px;font-size:12px}.btn:hover{filter:brightness(.96)}.hero{padding:30px 30px 22px;background:linear-gradient(115deg,#e9f0f6,#f8fafc)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--blue);font-weight:800}.hero h1{font-size:clamp(24px,3vw,36px);line-height:1.15;color:var(--navy);margin:8px 0 10px;max-width:850px}.hero p{max-width:850px;color:#536578;margin:0}.notice{margin-top:18px;background:#fff8e9;border:1px solid #f0dfb8;color:#76551c;border-radius:8px;padding:10px 13px;font-size:12px;max-width:1050px}.shell{display:grid;grid-template-columns:230px minmax(0,1fr);max-width:1600px;margin:auto}.sidebar{padding:22px 14px;background:#fff;border-right:1px solid var(--line);min-height:calc(100vh - 220px)}.nav-label{font-size:10px;color:#91a0ae;text-transform:uppercase;letter-spacing:.14em;font-weight:800;padding:0 12px 10px}.nav button{display:flex;align-items:center;gap:10px;width:100%;border:0;background:transparent;color:#526274;text-align:left;padding:11px 12px;border-radius:8px;margin:2px 0;font-weight:650}.nav button.active{background:#eaf1f7;color:var(--navy)}.nav button:hover{background:#f2f6f9}.nav .num{width:22px;height:22px;border-radius:6px;background:#edf1f5;display:grid;place-items:center;font-size:11px}.nav button.active .num{background:var(--navy);color:white}.content{padding:25px;min-width:0}.section{display:none}.section.active{display:block}.section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:20px}.section-head h2{margin:0;color:var(--navy);font-size:23px}.section-head p{margin:5px 0 0;color:var(--muted);max-width:760px}.grid{display:grid;gap:14px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.card{background:white;border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:var(--shadow);min-width:0}.kpi-label{color:var(--muted);font-size:12px;font-weight:650}.kpi-value{font-size:28px;font-weight:800;color:var(--navy);margin:7px 0 2px}.kpi-note{font-size:11px;color:#83909c}.two{grid-template-columns:1.15fr .85fr}.three{grid-template-columns:repeat(3,1fr)}.card h3{font-size:15px;color:var(--navy);margin:0 0 12px}.chart-row{display:grid;grid-template-columns:105px 1fr 38px;align-items:center;gap:10px;margin:11px 0;font-size:12px}.track{height:9px;background:#edf1f4;border-radius:20px;overflow:hidden}.fill{height:100%;background:var(--blue);border-radius:20px}.workflow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.stage{border:1px solid var(--line);border-radius:9px;padding:12px;background:#fbfcfd}.stage b{display:block;color:var(--navy);font-size:12px;margin:5px 0}.stage small{color:var(--muted);font-size:11px}.stage .step{color:var(--teal);font-weight:800;font-size:11px}.question{padding:12px 0;border-bottom:1px solid var(--line)}.question:last-child{border:0}.question label{display:block;font-weight:650;margin-bottom:7px}.field{width:100%;border:1px solid #d8e0e7;border-radius:7px;padding:9px 10px;background:#fff;color:var(--ink);min-width:0}.field:focus{outline:2px solid #b8d0e4;border-color:#7198b8}textarea.field{min-height:68px;resize:vertical}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field-wrap label{display:block;font-size:12px;font-weight:700;color:#526274;margin-bottom:5px}.checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.check{display:flex;gap:9px;align-items:flex-start;padding:8px 0;color:#526274;font-size:13px}.check input{margin-top:3px;accent-color:var(--teal)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;background:white}table{border-collapse:collapse;width:100%;min-width:760px;font-size:12px}th{background:#f5f8fa;color:#617183;text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.06em;padding:11px 10px;white-space:nowrap}td{padding:10px;border-top:1px solid #edf1f4;vertical-align:top}td input,td select{min-width:90px;width:100%;padding:6px;border:1px solid #e0e6eb;border-radius:5px;background:white;font-size:12px}td .wide{min-width:150px}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.toolbar .field{width:auto;min-width:150px}.pill{display:inline-block;border-radius:20px;padding:3px 8px;font-size:10px;font-weight:750;background:#edf3f7;color:#47627a}.pill.warn{background:#fff4df;color:#94651b}.pill.good{background:#e4f4ef;color:#167466}.pill.bad{background:#fae9e9;color:#a43d3d}.muted{color:var(--muted)}.callout{padding:12px 14px;border-radius:8px;background:#eef4f8;color:#425b72;border-left:3px solid var(--blue);font-size:12px;margin:12px 0}.warning{background:#fff8e9;border-left-color:var(--amber);color:#73551e}.danger-note{background:#fff0f0;border-left-color:var(--red);color:#813c3c}.budget-line{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}.budget-line strong{color:var(--navy);font-variant-numeric:tabular-nums}.budget-total{font-size:20px;font-weight:850;color:var(--teal)}.flowchart{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.flow-node{background:#edf3f7;border:1px solid #dce5ec;border-radius:7px;padding:9px 10px;color:#314b63;font-size:11px;font-weight:700}.arrow{color:#8a9aaa;font-weight:800}.footer{padding:22px 30px;color:#7a8793;font-size:11px;text-align:center}.hidden{display:none!important}.empty{padding:24px;text-align:center;color:var(--muted)}.mini{font-size:11px}.section-actions{display:flex;gap:8px;flex-wrap:wrap}.priority-high{color:#a43d3d;font-weight:750}.priority-review{color:#94651b;font-weight:750}.priority-low{color:#168579;font-weight:750}
+@media(max-width:1000px){.shell{grid-template-columns:1fr}.sidebar{min-height:auto;padding:10px 14px;border-right:0;border-bottom:1px solid var(--line)}.nav{display:flex;overflow:auto;gap:4px}.nav-label{display:none}.nav button{white-space:nowrap;width:auto}.content{padding:18px}.kpis{grid-template-columns:repeat(2,1fr)}.workflow{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.topbar{padding:14px 16px;align-items:flex-start;flex-direction:column}.hero{padding:22px 17px}.content{padding:14px}.kpis,.two,.three,.form-grid,.checklist{grid-template-columns:1fr}.workflow{grid-template-columns:1fr 1fr}.section-head{flex-direction:column}.chart-row{grid-template-columns:85px 1fr 28px}.top-actions .btn{font-size:11px;padding:7px 9px}}
+@media print{.topbar,.sidebar,.top-actions,.toolbar,.section-actions,.btn{display:none!important}.shell{display:block}.content{padding:0}.section{display:block!important;page-break-inside:avoid}.card{box-shadow:none;break-inside:avoid}.hero{padding:10px}.notice{display:block}body{background:white}.table-wrap{overflow:visible}table{min-width:0;font-size:9px}td,th{padding:5px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="topbar">
+  <div class="brand">WORK ORDER INTELLIGENCE<span>PROPERTY OPERATIONS IMPROVEMENT</span></div>
+  <div class="top-actions">
+    <button class="btn" onclick="restoreSamples()">Restore sample data</button>
+    <button class="btn" onclick="exportJSON()">Export JSON report</button>
+    <button class="btn primary" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</header>
+<section class="hero">
+  <div class="eyebrow">Operational intelligence demonstration</div>
+  <h1>Every work order is a data point. Together, they can inform the plan.</h1>
+  <p>A practical demonstration of how property managers can turn maintenance history into recurring-issue insights, preventative maintenance priorities and a more evidence-informed repair budget.</p>
+  <div class="notice"><strong>Demonstration only.</strong> This application uses fictional maintenance records and illustrative financial assumptions. It is not connected to a live property management system, accounting system or AI service.</div>
+</section>
+<div class="shell">
+<aside class="sidebar">
+  <div class="nav-label">Workspace</div>
+  <nav class="nav" id="nav">
+    <button class="active" data-tab="overview"><span class="num">01</span> Overview</button>
+    <button data-tab="discovery"><span class="num">02</span> Process Discovery</button>
+    <button data-tab="register"><span class="num">03</span> Work Order Register</button>
+    <button data-tab="intelligence"><span class="num">04</span> Maintenance Intelligence</button>
+    <button data-tab="preventative"><span class="num">05</span> Preventative Plan</button>
+    <button data-tab="budget"><span class="num">06</span> Repair &amp; Maintenance Budget</button>
+  </nav>
+</aside>
+<main class="content">
+<section class="section active" id="overview">
+  <div class="section-head"><div><h2>Overview</h2><p>A portfolio-level snapshot of recorded maintenance activity and the workflow used to turn it into operational insight.</p></div></div>
+  <div class="grid kpis">
+    <div class="card"><div class="kpi-label">Total work orders</div><div class="kpi-value" id="kpiCount">—</div><div class="kpi-note">Records in the current register</div></div>
+    <div class="card"><div class="kpi-label">Recorded repair expenditure</div><div class="kpi-value" id="kpiSpend">—</div><div class="kpi-note">Known costs only</div></div>
+    <div class="card"><div class="kpi-label">Recurring categories</div><div class="kpi-value" id="kpiRecurring">—</div><div class="kpi-note">3+ records; demonstration threshold</div></div>
+    <div class="card"><div class="kpi-label">Data-quality review</div><div class="kpi-value" id="kpiQuality">—</div><div class="kpi-note">Records with one or more flagged fields</div></div>
+  </div>
+  <div class="grid two">
+    <div class="card"><h3>Most frequent maintenance categories</h3><div id="overviewChart"></div></div>
+    <div class="card"><h3>What this solution helps answer</h3>
+      <ul class="mini" style="padding-left:18px;color:#526274;line-height:2">
+        <li>What breaks most often?</li><li>Where do recurring issues occur?</li><li>Which patterns deserve investigation?</li><li>What maintenance activities could potentially be prevented?</li><li>What should the next maintenance budget account for?</li>
+      </ul>
+      <div class="callout">A repeated ticket is a signal for investigation, not proof of a confirmed failure or root cause.</div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Five-stage improvement workflow</h3><div class="workflow">
+    <div class="stage"><span class="step">STAGE 1</span><b>Process Discovery</b><small>Understand intake, assignment, completion, verification and recording.</small></div>
+    <div class="stage"><span class="step">STAGE 2</span><b>Data Preparation</b><small>Consolidate records, standardise categories and identify gaps.</small></div>
+    <div class="stage"><span class="step">STAGE 3</span><b>Maintenance Intelligence</b><small>Analyse frequency, recurrence, location, ageing and cost.</small></div>
+    <div class="stage"><span class="step">STAGE 4</span><b>Preventative Planning</b><small>Refer patterns for professional validation and approval.</small></div>
+    <div class="stage"><span class="step">STAGE 5</span><b>Budget &amp; Monitoring</b><small>Translate history and planned work into a transparent forecast.</small></div>
+  </div></div>
+</section>
+<section class="section" id="discovery">
+  <div class="section-head"><div><h2>Process Discovery</h2><p>Automation begins with understanding how the operation works today. Capture current practices before recommending changes or new software.</p></div><button class="btn primary" onclick="exportDiscovery()">Export discovery notes (JSON)</button></div>
+  <div class="grid two">
+    <div class="card"><h3>Operator discovery questionnaire</h3><div id="questions"></div></div>
+    <div class="card"><h3>Systems assessment</h3><div class="form-grid" id="systemsFields"></div>
+      <div class="field-wrap" style="margin-top:12px"><label>Identified system hand-offs</label><textarea class="field" id="sys_handoffs"></textarea></div>
+      <div class="field-wrap" style="margin-top:12px"><label>Known data gaps</label><textarea class="field" id="sys_gaps"></textarea></div>
+      <div class="field-wrap" style="margin-top:12px"><label>Existing manual work</label><textarea class="field" id="sys_manual"></textarea></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Discovery checklist</h3><div class="checklist" id="discoveryChecks"></div></div>
+  <div class="callout warning">Do not assume external automation tools are necessary. First assess the existing PMS capabilities, subscription plan, configuration, permissions and actual usage.</div>
+</section>
+<section class="section" id="register">
+  <div class="section-head"><div><h2>Work Order Register</h2><p>Manage the working dataset. Imported records remain in this browser session and are not transmitted to an external service.</p></div><div class="section-actions"><button class="btn" onclick="downloadTemplate()">Download CSV template</button><button class="btn" onclick="document.getElementById('csvFile').click()">Import CSV</button><input id="csvFile" type="file" accept=".csv,text/csv" class="hidden" onchange="importCSV(event)"><button class="btn primary" onclick="exportCSV()">Export CSV</button></div></div>
+  <div class="toolbar"><input class="field" id="registerSearch" placeholder="Search ID, property, description…" oninput="renderRegister()"><select class="field" id="categoryFilter" onchange="renderRegister()"><option value="">All categories</option></select><select class="field" id="statusFilter" onchange="renderRegister()"><option value="">All statuses</option><option>Open</option><option>In Progress</option><option>Pending Vendor</option><option>Completed</option></select><button class="btn teal" onclick="addWorkOrder()">+ Add work order</button></div>
+  <div class="table-wrap"><table><thead><tr><th>Work Order ID</th><th>Date Reported</th><th>Property</th><th>Unit / Location</th><th>Category</th><th>Description</th><th>Asset / System</th><th>Vendor</th><th>Recorded Cost</th><th>Status</th><th></th></tr></thead><tbody id="registerBody"></tbody></table></div>
+  <p class="mini muted">Edit cells directly. Blank costs are treated as unknown, not zero. Duplicate IDs and incomplete fields are flagged for review; records are not automatically deleted.</p>
+</section>
+<section class="section" id="intelligence">
+  <div class="section-head"><div><h2>Maintenance Intelligence</h2><p>Transparent, rule-based analysis of the current work-order register. Patterns are signals to investigate, not technical diagnoses.</p></div></div>
+  <div class="grid two">
+    <div class="card"><h3>Work-order frequency by category</h3><div id="categoryFrequency"></div></div>
+    <div class="card"><h3>Recorded cost by category</h3><div id="categoryCost"></div></div>
+  </div>
+  <div class="grid three" style="margin-top:14px">
+    <div class="card"><h3>Repeated properties / locations</h3><div id="locationRepeats" class="mini"></div></div>
+    <div class="card"><h3>Work-order status</h3><div id="statusSummary" class="mini"></div></div>
+    <div class="card"><h3>Data-quality review</h3><div id="qualitySummary" class="mini"></div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Category prioritisation</h3><div class="table-wrap"><table><thead><tr><th>Category</th><th>Ticket count</th><th>Recorded cost</th><th>Average cost</th><th>Investigation question</th><th>Priority signal</th></tr></thead><tbody id="priorityBody"></tbody></table></div><p class="mini muted">A category with 3 or more records is flagged for review. This is a demonstration threshold, not an industry standard.</p></div>
+  <div class="grid two" style="margin-top:14px">
+    <div class="card"><h3>Investigation prompts</h3><p class="mini"><b>HVAC:</b> Do repeated reports relate to the same equipment, location or operating condition?</p><p class="mini"><b>Plumbing:</b> Are repeated reports associated with the same fixture, drain or unit?</p><p class="mini"><b>Appliances:</b> Are recurring tickets linked to the same appliance or equipment age?</p><p class="mini"><b>Pest Control:</b> Do reports cluster by location, season or building condition?</p></div>
+    <div class="card"><h3>AI-assisted analysis: proposed future capability</h3><p class="mini">An approved AI service could assist with categorising free-text descriptions, grouping similar reports, identifying possible repeated issues, summarising patterns, highlighting incomplete information and preparing an investigation report.</p><div class="callout warning">This application does not connect to AI. AI must not be represented as having diagnosed a technical cause.</div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Human validation requirements</h3><ul class="mini"><li>Qualified maintenance professionals validate technical diagnoses and interventions.</li><li>Property operators verify work-order history, asset information and locations.</li><li>Finance validates invoices, costs and accounting treatment.</li><li>Management approves preventative schedules and budget changes.</li></ul></div>
+</section>
+<section class="section" id="preventative">
+  <div class="section-head"><div><h2>Preventative Maintenance Plan</h2><p>Proposed actions for review. Only actions marked <b>Approved</b> flow into the preventative maintenance budget.</p></div><button class="btn teal" onclick="addAction()">+ Add action</button></div>
+  <div class="callout warning">All actions below are proposals requiring professional validation. No intervention is guaranteed to eliminate a reported problem.</div>
+  <div class="table-wrap"><table><thead><tr><th>Related category</th><th>Observed pattern</th><th>Proposed preventative action</th><th>Validation owner</th><th>Frequency / timing</th><th>Annual allowance</th><th>Status</th><th></th></tr></thead><tbody id="actionsBody"></tbody></table></div>
+</section>
+<section class="section" id="budget">
+  <div class="section-head"><div><h2>Repair and Maintenance Budget</h2><p>An illustrative annual forecast combining annualised reactive repair costs, approved preventative allowances and a contingency assumption.</p></div></div>
+  <div class="grid two">
+    <div class="card"><h3>Forecast assumptions</h3>
+      <div class="form-grid">
+        <div class="field-wrap"><label>Historical period represented (months)</label><input class="field" type="number" min="1" step="1" id="periodMonths" value="12"></div>
+        <div class="field-wrap"><label>Expenditure adjustment (%)</label><input class="field" type="number" step=".1" id="adjustment" value="5"></div>
+        <div class="field-wrap"><label>Contingency (%)</label><input class="field" type="number" min="0" step=".1" id="contingency" value="10"></div>
+      </div>
+      <div class="callout">Historical reactive expenditure is calculated from work-order costs in the register. Edit the register or the assumptions to update the forecast.</div>
+    </div>
+    <div class="card"><h3>Proposed annual budget</h3>
+      <div class="budget-line"><span>Historical recorded repair expenditure</span><strong id="bHistorical">—</strong></div>
+      <div class="budget-line"><span>Annualised reactive repair forecast</span><strong id="bAnnual">—</strong></div>
+      <div class="budget-line"><span>Adjusted reactive repair forecast</span><strong id="bAdjusted">—</strong></div>
+      <div class="budget-line"><span>Approved preventative maintenance</span><strong id="bPreventative">—</strong></div>
+      <div class="budget-line"><span>Contingency</span><strong id="bContingency">—</strong></div>
+      <div class="budget-line" style="border:0;padding-top:16px"><span><b>Total annual maintenance budget</b></span><strong class="budget-total" id="bTotal">—</strong></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Budget review checklist</h3><div class="checklist" id="budgetChecks"></div></div>
+  <div class="callout warning" style="margin-top:14px">Forecast limitations: illustrative only. Reconcile historical work-order costs with accounting records; missing invoices and incomplete costs can distort the forecast; distinguish capital expenditure from operating repairs; Finance determines accounting treatment; preventative maintenance does not automatically guarantee savings; contingency and adjustment assumptions require management approval.</div>
+</section>
+<div class="card" style="margin-top:18px">
+  <h3>Proposed workflow architecture</h3>
+  <div class="flowchart"><span class="flow-node">Maintenance Request</span><span class="arrow">→</span><span class="flow-node">Work Order Created</span><span class="arrow">→</span><span class="flow-node">Data Quality Review</span><span class="arrow">→</span><span class="flow-node">Categorisation</span><span class="arrow">→</span><span class="flow-node">Pattern Analysis</span><span class="arrow">→</span><span class="flow-node">Human Investigation</span><span class="arrow">→</span><span class="flow-node">Professional Validation</span><span class="arrow">→</span><span class="flow-node">Action Approval</span><span class="arrow">→</span><span class="flow-node">Budget Forecast</span><span class="arrow">→</span><span class="flow-node">Ongoing Monitoring</span></div>
+  <p class="mini muted" style="margin-top:12px">The PMS should remain the primary operational record where appropriate. Potential future layers may include PMS-native automation, Zapier or Make for approved cross-application workflows, Airtable for structured information where justified, Process Street for documented checklists, Slack for internal notifications, and Mailchimp only for an approved communication use case. Do not force these products into the solution.</p>
+  <p class="mini muted">Before integrations are promised, verify API availability, permissions, plan eligibility, triggers, actions, licensing, data security and applicable rate limits. First establish whether the PMS already supports the required functionality.</p>
+</div>
+<div class="card" style="margin-top:14px">
+  <h3>Property Management Process Discovery, Systems Assessment and Workflow Improvement</h3>
+  <p class="mini">A practical service process: understand existing processes; assess software and information flows; identify verified gaps and opportunities; design improved workflows; document repeatable procedures; implement appropriate automation where justified; monitor performance and refine the process.</p>
+  <p class="mini muted">This is operational improvement and workflow automation support, not a replacement for property managers, accountants, engineers or maintenance professionals.</p>
+</div>
+<div class="callout danger-note" style="margin-top:14px"><b>Privacy warning:</b> Do not enter resident names, personal contact information, access codes, bank information, credentials or confidential client records into a public demonstration or unapproved AI service. Imported data remains within this browser session.</div>
+</main>
+</div>
+<footer class="footer">Work Order Intelligence · Independent solution concept · Fictional sample data · Browser-based demonstration</footer>
+</div>
+<script>
+const categories=['Plumbing','HVAC','Appliances','Electrical','Pest Control','Roof / Exterior','Other'];
+const fields=['Work Order ID','Date Reported','Property','Unit / Location','Category','Description','Asset / System','Vendor','Recorded Cost','Status'];
+const keys=['id','date','property','location','category','description','asset','vendor','cost','status'];
+const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Number(n)||0);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sample=[
+['WO-1001','2026-01-08','Harbor Point','Unit 2B','HVAC','Heating not maintaining set temperature','Heat pump HP-2B','Northstar Mechanical',285,'Completed'],
+['WO-1002','2026-01-12','Cedar Court','Unit 104','Plumbing','Slow bathroom sink drain','Bathroom sink','ClearFlow Plumbing',145,'Completed'],
+['WO-1003','2026-01-17','Maple Residences','Unit 3A','Appliances','Refrigerator not cooling consistently','Refrigerator RF-3A','Metro Appliance',310,'Completed'],
+['WO-1004','2026-01-21','Harbor Point','Unit 2B','HVAC','Unusual noise reported from heat pump','Heat pump HP-2B','Northstar Mechanical',190,'Completed'],
+['WO-1005','2026-02-02','Cedar Court','Common area','Pest Control','Pest activity reported near refuse room','Refuse room','SafeGuard Pest',175,'Completed'],
+['WO-1006','2026-02-06','Maple Residences','Unit 1C','Electrical','Kitchen outlet not working','Kitchen outlet','BrightLine Electric',220,'Completed'],
+['WO-1007','2026-02-11','Harbor Point','Unit 2B','HVAC','Heating performance concern after service','Heat pump HP-2B','Northstar Mechanical',125,'Completed'],
+['WO-1008','2026-02-15','Cedar Court','Unit 104','Plumbing','Drain backing up again','Bathroom drain','ClearFlow Plumbing',265,'Completed'],
+['WO-1009','2026-02-19','Maple Residences','Unit 3A','Appliances','Refrigerator temperature fluctuation','Refrigerator RF-3A','Metro Appliance',95,'Completed'],
+['WO-1010','2026-02-25','Harbor Point','Roof','Roof / Exterior','Water stain reported after heavy rain','Roof section A','Peak Roofing',480,'Completed'],
+['WO-1011','2026-03-03','Cedar Court','Unit 206','HVAC','Air conditioning not cooling effectively','Split AC AC-206','Northstar Mechanical',340,'Completed'],
+['WO-1012','2026-03-07','Maple Residences','Ground floor','Pest Control','Ant activity reported near entry','Main entry','SafeGuard Pest',130,'Completed'],
+['WO-1013','2026-03-13','Harbor Point','Unit 2B','HVAC','Thermostat display intermittently blank','Thermostat TH-2B','Northstar Mechanical',165,'Completed'],
+['WO-1014','2026-03-18','Cedar Court','Unit 104','Plumbing','Water dripping below sink','Kitchen sink','ClearFlow Plumbing',185,'Completed'],
+['WO-1015','2026-03-22','Maple Residences','Unit 3A','Appliances','Freezer frost accumulation reported','Refrigerator RF-3A','Metro Appliance',110,'Completed'],
+['WO-1016','2026-04-02','Harbor Point','Unit 305','Plumbing','Toilet continues to run after flushing','Toilet','ClearFlow Plumbing',155,'Completed'],
+['WO-1017','2026-04-09','Cedar Court','Common area','Pest Control','Further activity observed near refuse room','Refuse room','SafeGuard Pest',210,'In Progress'],
+['WO-1018','2026-04-14','Maple Residences','Unit 1C','Electrical','Light fitting flickering','Ceiling light','BrightLine Electric',95,'Completed'],
+['WO-1019','2026-04-20','Harbor Point','Unit 2B','HVAC','Cooling cycle short and inconsistent','Heat pump HP-2B','Northstar Mechanical',230,'Pending Vendor'],
+['WO-1020','2026-05-01','Cedar Court','Unit 104','Plumbing','Slow drain and odour reported','Bathroom drain','ClearFlow Plumbing',175,'Completed'],
+['WO-1021','2026-05-08','Maple Residences','Unit 3A','Appliances','Refrigerator making intermittent noise','Refrigerator RF-3A','Metro Appliance',145,'Open'],
+['WO-1022','2026-05-15','Harbor Point','Common area','Roof / Exterior','Gutter overflow during rainfall','North gutter','Peak Roofing',360,'Completed'],
+['WO-1023','2026-05-20','Cedar Court','Unit 206','HVAC','AC filter condition and airflow concern','Split AC AC-206','Northstar Mechanical',90,'Completed'],
+['WO-1024','2026-06-04','Maple Residences','Ground floor','Pest Control','Pest activity near service entrance','Service entrance','SafeGuard Pest',160,'Completed'],
+['WO-1025','2026-06-11','Harbor Point','Unit 2B','HVAC','Heat pump not responding to thermostat','Heat pump HP-2B','Northstar Mechanical',295,'In Progress'],
+['WO-1026','2026-06-17','Cedar Court','Unit 104','Plumbing','Kitchen faucet leak','Kitchen faucet','ClearFlow Plumbing',125,'Completed'],
+['WO-1027','2026-07-02','Maple Residences','Unit 3A','Appliances','Refrigerator door seal appears loose','Refrigerator RF-3A','Metro Appliance',80,'Completed'],
+['WO-1028','2026-07-09','Harbor Point','Unit 305','Electrical','Breaker tripped; inspection requested','Panel circuit 5','BrightLine Electric',null,'Open'],
+['WO-1029','2026-07-16','Cedar Court','Common area','Pest Control','Resident report of insects near refuse room','Refuse room','SafeGuard Pest',195,'Pending Vendor'],
+['WO-1030','2026-08-03','Maple Residences','Unit 1C','Other','Bedroom door latch requires adjustment','Door hardware','In-house team',65,'Completed'],
+['WO-1031','2026-08-11','Harbor Point','Unit 2B','HVAC','Heating / cooling performance follow-up','Heat pump HP-2B','Northstar Mechanical',null,'Open'],
+['WO-1032','','Cedar Court','Unit 104','Plumbing','Further bathroom drain concern','Bathroom drain','ClearFlow Plumbing',140,'Open']
+].map(a=>Object.fromEntries(keys.map((k,i)=>[k,a[i]])));
+let orders=structuredClone(sample);
+let actions=[
+{category:'HVAC',pattern:'Several reports associated with Heat pump HP-2B at Harbor Point, Unit 2B.',proposal:'Review manufacturer-recommended seasonal servicing and filter / airflow inspection schedules.',owner:'Maintenance lead',timing:'Seasonal; confirm with qualified contractor',allowance:900,status:'Proposed'},
+{category:'Plumbing',pattern:'Repeated drain and fixture reports at Cedar Court, Unit 104.',proposal:'Review recurring drain and fixture reports and assess appropriate inspection or maintenance requirements.',owner:'Plumbing contractor',timing:'Review quarterly; validate interval',allowance:500,status:'Proposed'},
+{category:'Appliances',pattern:'Multiple refrigerator reports for asset RF-3A at Maple Residences.',proposal:'Review repeat reports, equipment age and repair-versus-replacement history.',owner:'Property operations',timing:'At each repeat report; annual review',allowance:300,status:'Proposed'},
+{category:'Pest Control',pattern:'Reports recur around refuse room and building entries.',proposal:'Review recurring reports, inspection findings and possible building-wide contributing conditions.',owner:'Licensed pest professional',timing:'Frequency to be professionally validated',allowance:700,status:'Proposed'}
+];
+const discoveryQuestions=[
+'How are maintenance requests received and entered into the property management system?',
+'Who assigns categories, priorities and urgency?',
+'How are vendors selected, dispatched and followed up?',
+'How is completion confirmed?',
+'How are invoices, labour and materials recorded?',
+'How are recurring issues linked to the same property, unit or asset?',
+'Which property management system features are available, configured and actually used?',
+'What approval and escalation procedures apply?'
+];
+const systems=[['pms','Property management system'],['intake','Maintenance request intake channel'],['vendorSystem','Vendor coordination system'],['accounting','Accounting or cost-recording system'],['otherApps','Other relevant applications']];
+const discoveryChecklist=['Interview maintenance coordinator','Review sample work orders','Confirm maintenance category definitions','Check data completeness','Map vendor hand-offs','Review existing PMS capabilities','Confirm invoice and cost records','Identify approval procedures','Agree data access and privacy controls'];
+const budgetChecklist=['Reconcile historical costs to accounting records','Separate operating repairs from capital projects','Validate preventative actions with qualified professionals','Confirm vendor pricing','Review contingency with management','Obtain budget approval'];
+function init(){
+ document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===b.dataset.tab));}));
+ document.getElementById('questions').innerHTML=discoveryQuestions.map((q,i)=>`<div class="question"><label>${i+1}. ${q}</label><textarea class="field discovery-answer" data-q="${i}" placeholder="Record current process, owner, system and any observed gap…"></textarea></div>`).join('');
+ document.getElementById('systemsFields').innerHTML=systems.map(([id,label])=>`<div class="field-wrap"><label>${label}</label><input class="field" id="sys_${id}" placeholder="Enter details"></div>`).join('');
+ document.getElementById('discoveryChecks').innerHTML=discoveryChecklist.map((x,i)=>`<label class="check"><input type="checkbox" data-discovery="${i}">${x}</label>`).join('');
+ document.getElementById('budgetChecks').innerHTML=budgetChecklist.map((x,i)=>`<label class="check"><input type="checkbox" data-budget="${i}">${x}</label>`).join('');
+ ['periodMonths','adjustment','contingency'].forEach(id=>document.getElementById(id).addEventListener('input',renderBudget));
+ renderAll();
+}
+function renderAll(){renderRegister();renderOverview();renderIntelligence();renderActions();renderBudget();}
+function totals(){let costs=orders.reduce((s,o)=>s+(o.cost===''||o.cost===null||o.cost===undefined?0:Number(o.cost)||0),0);let countBy={};categories.forEach(c=>countBy[c]=orders.filter(o=>o.category===c).length);return{costs,countBy};}
+function qualityIssues(o){let missing=[];if(orders.filter(x=>String(x.id||'').trim()&&String(x.id).trim()===String(o.id||'').trim()).length>1)missing.push('duplicate work-order ID');if(!o.date)missing.push('date');if(!o.property||!o.location)missing.push('property/location');if(!o.description)missing.push('description');if(o.cost===''||o.cost===null||o.cost===undefined)missing.push('cost');if(!categories.includes(o.category))missing.push('category');return missing;}
+function renderOverview(){let t=totals(),rec=categories.filter(c=>t.countBy[c]>=3).length,q=orders.filter(o=>qualityIssues(o).length).length;document.getElementById('kpiCount').textContent=orders.length;document.getElementById('kpiSpend').textContent=money(t.costs);document.getElementById('kpiRecurring').textContent=rec;document.getElementById('kpiQuality').textContent=q;let max=Math.max(1,...Object.values(t.countBy));document.getElementById('overviewChart').innerHTML=categories.map(c=>`<div class="chart-row"><span>${esc(c)}</span><div class="track"><div class="fill" style="width:${t.countBy[c]/max*100}%"></div></div><b>${t.countBy[c]}</b></div>`).join('');}
+function renderRegister(){let cf=document.getElementById('categoryFilter'),old=cf.value;cf.innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${c}</option>`).join('');cf.value=old;let search=(document.getElementById('registerSearch').value||'').toLowerCase(),cat=cf.value,status=document.getElementById('statusFilter').value;let rows=orders.map((o,i)=>({...o,_i:i})).filter(o=>(!cat||o.category===cat)&&(!status||o.status===status)&&(!search||keys.some(k=>String(o[k]??'').toLowerCase().includes(search))));document.getElementById('registerBody').innerHTML=rows.length?rows.map(o=>`<tr>${keys.map(k=>`<td>${cellEditor(k,o[k],o._i)}</td>`).join('')}<td><button class="btn small danger" onclick="removeOrder(${o._i})">Remove</button></td></tr>`).join(''):'<tr><td colspan="11" class="empty">No matching work orders.</td></tr>';}
+function cellEditor(k,v,i){if(k==='category')return `<select onchange="editOrder(${i},'${k}',this.value)">${categories.map(c=>`<option ${v===c?'selected':''}>${c}</option>`).join('')}<option ${!categories.includes(v)?'selected':''}>Other</option></select>`;if(k==='status')return `<select onchange="editOrder(${i},'${k}',this.value)">${['Open','In Progress','Pending Vendor','Completed'].map(c=>`<option ${v===c?'selected':''}>${c}</option>`).join('')}</select>`;let type=k==='date'?'date':k==='cost'?'number': 'text';return `<input class="${['description','asset','property','location'].includes(k)?'wide':''}" type="${type}" value="${esc(v??'')}" ${k==='cost'?'step="0.01"':''} onchange="editOrder(${i},'${k}',this.value)">`;}
+function editOrder(i,k,v){orders[i][k]=k==='cost'?(v===''?'':Number(v)):v;renderAll();}
+function addWorkOrder(){let id='WO-'+(1000+Math.max(0,...orders.map(o=>Number(String(o.id).replace(/\D/g,''))||0))-1000+1);while(orders.some(o=>o.id===id))id='WO-'+(1000+Math.floor(Math.random()*8999));orders.unshift({id,date:new Date().toISOString().slice(0,10),property:'',location:'',category:'Other',description:'',asset:'',vendor:'',cost:'',status:'Open'});renderAll();}
+function removeOrder(i){if(confirm('Remove this work order from the current session?')){orders.splice(i,1);renderAll();}}
+function renderIntelligence(){let t=totals(),max=Math.max(1,...Object.values(t.countBy));document.getElementById('categoryFrequency').innerHTML=categories.map(c=>`<div class="chart-row"><span>${c}</span><div class="track"><div class="fill" style="width:${t.countBy[c]/max*100}%"></div></div><b>${t.countBy[c]}</b></div>`).join('');let sums=categories.map(c=>orders.filter(o=>o.category===c).reduce((s,o)=>s+(o.cost===''||o.cost==null?0:Number(o.cost)||0),0)),m=Math.max(1,...sums);document.getElementById('categoryCost').innerHTML=categories.map((c,i)=>`<div class="chart-row"><span>${c}</span><div class="track"><div class="fill" style="width:${sums[i]/m*100}%"></div></div><b>${money(sums[i])}</b></div>`).join('');
+ let loc={};orders.forEach(o=>{let key=[o.property,o.location].filter(Boolean).join(' · ')||'Unspecified location';loc[key]=(loc[key]||0)+1});let repeated=Object.entries(loc).filter(x=>x[1]>=2).sort((a,b)=>b[1]-a[1]);document.getElementById('locationRepeats').innerHTML=repeated.length?repeated.slice(0,8).map(([k,v])=>`<p>${esc(k)} <span class="pill warn">${v} reports</span></p>`).join(''):'No repeated locations identified.';
+ let statuses=['Open','In Progress','Pending Vendor','Completed'];document.getElementById('statusSummary').innerHTML=statuses.map(s=>`<p>${s}: <b>${orders.filter(o=>o.status===s).length}</b></p>`).join('')+`<p><b>${orders.filter(o=>o.status!=='Completed').length}</b> open / incomplete orders</p>`;
+ let bad=orders.filter(o=>qualityIssues(o).length);document.getElementById('qualitySummary').innerHTML=`<p><b>${bad.length}</b> records require review</p>`+bad.slice(0,6).map(o=>`<p>${esc(o.id)}: ${qualityIssues(o).join(', ')}</p>`).join('')+(bad.length>6?`<p>+ ${bad.length-6} more</p>`:'');
+ let prompts={HVAC:'Do reports relate to the same equipment, location or operating condition?',Plumbing:'Are reports associated with the same fixture, drain or unit?',Appliances:'Are tickets linked to the same appliance or equipment age?','Pest Control':'Do reports cluster by location, season or building condition?'};document.getElementById('priorityBody').innerHTML=categories.map(c=>{let arr=orders.filter(o=>o.category===c),sum=arr.reduce((s,o)=>s+(o.cost===''||o.cost==null?0:Number(o.cost)||0),0),known=arr.filter(o=>o.cost!==''&&o.cost!=null).length,avg=known?sum/known:0,priority=arr.length>=3?'Review pattern':arr.length?'Monitor':'No signal';return `<tr><td><b>${c}</b></td><td>${arr.length}</td><td>${money(sum)}${arr.length>known?'<span class="muted">* known costs</span>':''}</td><td>${known?money(avg):'—'}</td><td>${prompts[c]||'Review descriptions and asset/location details for repeat signals.'}</td><td class="${arr.length>=3?'priority-review':'priority-low'}">${priority}</td></tr>`}).join('');}
+function renderActions(){document.getElementById('actionsBody').innerHTML=actions.map((a,i)=>`<tr><td><select onchange="editAction(${i},'category',this.value)">${categories.map(c=>`<option ${a.category===c?'selected':''}>${c}</option>`).join('')}</select></td><td><textarea class="wide" onchange="editAction(${i},'pattern',this.value)">${esc(a.pattern)}</textarea></td><td><textarea class="wide" onchange="editAction(${i},'proposal',this.value)">${esc(a.proposal)}</textarea></td><td><input value="${esc(a.owner)}" onchange="editAction(${i},'owner',this.value)"></td><td><input class="wide" value="${esc(a.timing)}" onchange="editAction(${i},'timing',this.value)"></td><td><input type="number" min="0" step="1" value="${Number(a.allowance)||0}" onchange="editAction(${i},'allowance',this.value)"></td><td><select onchange="editAction(${i},'status',this.value)">${['Proposed','Validated','Approved','Not Recommended'].map(s=>`<option ${a.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><button class="btn small danger" onclick="removeAction(${i})">Remove</button></td></tr>`).join('');}
+function editAction(i,k,v){actions[i][k]=k==='allowance'?Math.max(0,Number(v)||0):v;renderBudget();}
+function addAction(){actions.push({category:'Other',pattern:'',proposal:'',owner:'',timing:'To be determined',allowance:0,status:'Proposed'});renderActions();renderBudget();}
+function removeAction(i){actions.splice(i,1);renderActions();renderBudget();}
+function renderBudget(){let historical=orders.reduce((s,o)=>s+(o.cost===''||o.cost==null?0:Number(o.cost)||0),0),period=Math.max(1,Number(document.getElementById('periodMonths').value)||1),adj=Number(document.getElementById('adjustment').value)||0,cont=Math.max(0,Number(document.getElementById('contingency').value)||0),annual=historical*12/period,adjusted=annual*(1+adj/100),prevent=actions.filter(a=>a.status==='Approved').reduce((s,a)=>s+(Number(a.allowance)||0),0),contingency=(adjusted+prevent)*cont/100,total=adjusted+prevent+contingency;[['bHistorical',historical],['bAnnual',annual],['bAdjusted',adjusted],['bPreventative',prevent],['bContingency',contingency],['bTotal',total]].forEach(([id,v])=>document.getElementById(id).textContent=money(v));}
+function csvEscape(v){let s=String(v??'');return '"'+s.replace(/"/g,'""')+'"';}
+function exportCSV(){let csv=[fields.map(csvEscape).join(','),...orders.map(o=>keys.map(k=>csvEscape(o[k])).join(','))].join('\r\n');downloadBlob(csv,'work-orders.csv','text/csv;charset=utf-8');}
+function downloadTemplate(){let row={id:'WO-2001',date:'2026-01-15',property:'Example Property',location:'Unit 101',category:'Plumbing',description:'Describe the reported issue',asset:'Kitchen sink',vendor:'Example Vendor',cost:125,status:'Open'};downloadBlob([fields.map(csvEscape).join(','),keys.map(k=>csvEscape(row[k])).join(',')].join('\r\n'),'work-order-template.csv','text/csv;charset=utf-8');}
+function parseCSV(text){let rows=[],row=[],v='',q=false;for(let i=0;i<text.length;i++){let c=text[i];if(q){if(c==='"'&&text[i+1]==='"'){v+='"';i++;}else if(c==='"')q=false;else v+=c;}else{if(c==='"')q=true;else if(c===','){row.push(v);v='';}else if(c==='\n'){row.push(v);rows.push(row);row=[];v='';}else if(c!=='\r')v+=c;}}if(v.length||row.length){row.push(v);rows.push(row);}return rows;}
+function importCSV(e){let f=e.target.files[0];if(!f)return;let reader=new FileReader();reader.onload=()=>{try{let rows=parseCSV(reader.result),headers=rows.shift().map(x=>x.trim().toLowerCase()),map={id:['work order id','id'],date:['date reported','date'],property:['property'],location:['unit / location','location'],category:['category'],description:['description'],asset:['asset / system','asset'],vendor:['vendor'],cost:['recorded cost','cost'],status:['status']};let imported=rows.filter(r=>r.some(x=>x.trim())).map(r=>{let o={};keys.forEach(k=>{let idx=headers.findIndex(h=>map[k].includes(h));o[k]=idx>=0?(r[idx]??''):'';});o.cost=o.cost===''?'':Number(o.cost)||0;o.category=categories.includes(o.category)?o.category:'Other';o.status=['Open','In Progress','Pending Vendor','Completed'].includes(o.status)?o.status:'Open';return o;});if(!imported.length)throw Error('No data rows found.');orders=imported;renderAll();alert(`Imported ${imported.length} work orders. Existing register replaced.`);}catch(err){alert('CSV import failed: '+err.message);}e.target.value='';};reader.readAsText(f);}
+function exportJSON(){let report={title:'Work Order Intelligence',generatedAt:new Date().toISOString(),disclaimer:'Demonstration only. Fictional / user-entered records; not connected to a live PMS, accounting system or AI service.',workOrders:orders,preventativeActions:actions,discovery:collectDiscovery(),budget:collectBudget(),analysis:{totalWorkOrders:orders.length,recordedCost:totals().costs,recurringCategories:categories.filter(c=>orders.filter(o=>o.category===c).length>=3),recordsRequiringReview:orders.filter(o=>qualityIssues(o).length).map(o=>({id:o.id,issues:qualityIssues(o)}))}};downloadBlob(JSON.stringify(report,null,2),'work-order-intelligence-report.json','application/json');}
+function collectDiscovery(){return{responses:[...document.querySelectorAll('.discovery-answer')].map(x=>({question:discoveryQuestions[Number(x.dataset.q)],response:x.value})),systems:Object.fromEntries(systems.map(([id])=>[id,document.getElementById('sys_'+id).value])),handoffs:document.getElementById('sys_handoffs').value,gaps:document.getElementById('sys_gaps').value,manualWork:document.getElementById('sys_manual').value,checklist:[...document.querySelectorAll('[data-discovery]')].map(x=>({item:discoveryChecklist[Number(x.dataset.discovery)],complete:x.checked}))};}
+function exportDiscovery(){downloadBlob(JSON.stringify(collectDiscovery(),null,2),'process-discovery-notes.json','application/json');}
+function collectBudget(){return{historicalPeriodMonths:Number(document.getElementById('periodMonths').value)||1,adjustmentPercent:Number(document.getElementById('adjustment').value)||0,contingencyPercent:Number(document.getElementById('contingency').value)||0,approvedPreventativeActions:actions.filter(a=>a.status==='Approved')};}
+function downloadBlob(content,name,type){let blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();URL.revokeObjectURL(url);}
+function restoreSamples(){if(confirm('Restore the fictional sample work orders and example preventative actions? Current register and action edits will be replaced.')){orders=structuredClone(sample);actions=[{category:'HVAC',pattern:'Several reports associated with Heat pump HP-2B at Harbor Point, Unit 2B.',proposal:'Review manufacturer-recommended seasonal servicing and filter / airflow inspection schedules.',owner:'Maintenance lead',timing:'Seasonal; confirm with qualified contractor',allowance:900,status:'Proposed'},{category:'Plumbing',pattern:'Repeated drain and fixture reports at Cedar Court, Unit 104.',proposal:'Review recurring drain and fixture reports and assess appropriate inspection or maintenance requirements.',owner:'Plumbing contractor',timing:'Review quarterly; validate interval',allowance:500,status:'Proposed'},{category:'Appliances',pattern:'Multiple refrigerator reports for asset RF-3A at Maple Residences.',proposal:'Review repeat reports, equipment age and repair-versus-replacement history.',owner:'Property operations',timing:'At each repeat report; annual review',allowance:300,status:'Proposed'},{category:'Pest Control',pattern:'Reports recur around refuse room and building entries.',proposal:'Review recurring reports, inspection findings and possible building-wide contributing conditions.',owner:'Licensed pest professional',timing:'Frequency to be professionally validated',allowance:700,status:'Proposed'}];renderAll();}}
+init();
+</script>
+</body>
+</html>
